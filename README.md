@@ -1,1 +1,1 @@
-# Selenium_testing_e-commerce
+# Selenium and TestNG testing a e-commerce
