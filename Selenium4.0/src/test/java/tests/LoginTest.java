@@ -11,9 +11,6 @@ public class LoginTest extends RunBase {
     LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
     InventoryPage inventoryPage = new InventoryPage();
 
-/*    String email = "demouser@microsoft.com";
-    String password = "Pass@word1";*/
-
     String email = "wilcsonaraujmg@hotmail.com";
     String password = "Aa*123123";
 
