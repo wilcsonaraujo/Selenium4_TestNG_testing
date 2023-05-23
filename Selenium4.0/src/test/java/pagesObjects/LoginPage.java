@@ -1,22 +1,51 @@
 package pagesObjects;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
+import org.openqa.selenium.By;
+import org.testng.Assert;
+import runner.RunBase;
 
-public class LoginPage {
-
-    public WebDriver driver;
-
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-    }
+public class LoginPage extends RunBase {
 
     String emailFilder = "//input[@id='Input_Email']";
     String passwordFilder = "//input[@id='Input_Password']";
-    String rememberMeButton = "//label[normalize-space()='Remember me?']";
-    String LoginButton = "//button[normalize-space()='Log in']";
+    String loginButton = "//button[normalize-space()='Log in']";
     String forgotPasswordButton = "//a[normalize-space()='Forgot your password?']";
     String registerButton = "//a[normalize-space()='Register as a new user']";
+    String userEmailLogged = "//div[@class='esh-identity-name']";
+    String resetPasswordMessage = "//p";
+    String submitButton = "//button[normalize-space()='Submit']";
+
+    public void inputEmail(String email) {
+        driver.findElement(By.xpath(emailFilder)).sendKeys(email);
+    }
+
+    public void inputPassword(String password) {
+        driver.findElement(By.xpath(passwordFilder)).sendKeys(password);
+    }
+
+    public void clickToLogin() {
+        driver.findElement(By.xpath(loginButton)).click();
+    }
+
+    public void clickToForgotPassword() {
+        driver.findElement(By.xpath(forgotPasswordButton)).click();
+    }
+
+    public void clickToRegister() {
+        driver.findElement(By.xpath(registerButton)).click();
+    }
+
+    public void verifyUserLogged(String user) {
+        String actual = driver.findElement(By.xpath(userEmailLogged)).getText();
+        Assert.assertEquals(actual, user);
+    }
+
+    public void clickToSubmit() {
+        driver.findElement(By.xpath(submitButton)).click();
+    }
+
+    public void verifyForgotPassword() {
+        String actual = driver.findElement(By.xpath(resetPasswordMessage)).getText();
+        Assert.assertEquals(actual, "Please check your email to reset your password.");
+    }
 }

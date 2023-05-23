@@ -1,16 +1,8 @@
 package pagesObjects;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
+import runner.RunBase;
 
-public class BasketPage {
-    public WebDriver driver;
-
-    public BasketPage(WebDriver driver) {
-        this.driver = driver;
-    }
+public class BasketPage extends RunBase {
 
     String costLabel = "";
     String totalLabel = "//section[@class='esh-basket-item esh-basket-item--mark col-xs-2']";
