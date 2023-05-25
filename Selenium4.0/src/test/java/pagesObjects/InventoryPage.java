@@ -12,7 +12,6 @@ import java.util.List;
 public class InventoryPage extends RunBase {
 
     String loginButton = "//a[normalize-space()='Login']";
-    String basketButton = "//a[@class='esh-basketstatus']";
     String brandFilter = "//select[@id='CatalogModel_BrandFilterApplied']";
     String typeFilter = "//select[@id='CatalogModel_TypesFilterApplied']";
     String filterButton = "//input[@type='image']";
@@ -26,9 +25,8 @@ public class InventoryPage extends RunBase {
     public void clickLoginButton() {
         driver.findElement(By.xpath(loginButton)).click();
     }
-
-    public void clickToAddToBasket() {
-        driver.findElement(By.xpath(basketButton)).click();
+    public void clickOnBasket(){
+        driver.findElement(By.xpath("//a[@class='esh-basketstatus']")).click();
     }
 
     public void selectBrandFilter() {
@@ -89,6 +87,15 @@ public class InventoryPage extends RunBase {
         } else {
             return Utils.getSelectedOption(locator);
         }
+    }
+    public void addProductsToBasket(){
+        int products = Utils.getRandomNumber(Utils.getList(basketButtonList).size());
+        for(int i = 1; i<=products;i++){
+            int product = Utils.getRandomNumber(Utils.getList(basketButtonList).size());
+            driver.findElement(By.xpath(basketButtonList+"["+product+"]")).click();
+            driver.findElement(By.xpath("//a/img")).click();
+        }
+
     }
 
 }
