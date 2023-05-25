@@ -18,7 +18,7 @@ public class InventoryPage extends RunBase {
     String previousButton = "(//a[@id='Previous'])[1]";
     String nextButton = "(//a[@id='Next'])[1]";
     String basketButtonList = "(//input[@value='[ ADD TO BASKET ]'])";
-    String productsfilteredList = "//div[@class='esh-catalog-name']";
+    String productsFilteredList = "//div[@class='esh-catalog-name']";
     String pageNumberLabel = "//article//span";
     String emptyFilteredLabel = "//div[@class='esh-catalog-items row']";
 
@@ -56,13 +56,13 @@ public class InventoryPage extends RunBase {
     }
 
     public void verifyFilterResult(String compare) {
-        List<String> titleList = Utils.getList(productsfilteredList);
+        List<String> titleList = Utils.getList(productsFilteredList);
         Boolean actual = false;
         if (titleList.size() == 0) {
             String textEmpty = driver.findElement(By.xpath(emptyFilteredLabel)).getText();
             actual = textEmpty.contains(compare);
         } else {
-            int quaintProducts = Utils.getList(productsfilteredList).size();
+            int quaintProducts = Utils.getList(productsFilteredList).size();
             String num = driver.findElement(By.xpath(pageNumberLabel)).getText().replaceAll("[\\D]", "");
             int showProduct = Integer.parseInt(String.valueOf(num.charAt(1)));
             if (quaintProducts == showProduct) {
@@ -81,7 +81,7 @@ public class InventoryPage extends RunBase {
     }
 
     public String checkProductsFilter(String locator) {
-        int quantProductDisplayed = Utils.getList(productsfilteredList).size();
+        int quantProductDisplayed = Utils.getList(productsFilteredList).size();
         if (quantProductDisplayed == 0) {
             return driver.findElement(By.xpath(emptyFilteredLabel)).getText();
         } else {

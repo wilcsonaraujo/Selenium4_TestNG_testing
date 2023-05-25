@@ -32,6 +32,15 @@ public class Utils extends RunBase {
         return elements;
     }
 
+    public static List<String> getListAttribute(String location) {
+        List<String> elements = new ArrayList<>();
+        List<WebElement> data = driver.findElements(By.xpath(location));
+        for (WebElement e : data) {
+            elements.add(e.getAttribute("value"));
+        }
+        return elements;
+    }
+
     public static String getSelectedOption(String location) {
         WebElement selectOpt = driver.findElement(By.xpath(location));
         Select select = new Select(selectOpt);

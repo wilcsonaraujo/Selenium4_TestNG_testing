@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 
 public class BasketPage extends RunBase {
 
-    String costLabel = "//section[@class='esh-basket-item esh-basket-item--middle esh-basket-item--mark col-xs-2'][contains(text(),'$')]";
+    String costLabel = "//article[@class='esh-basket-items row']//section[5]";
     String totalLabel = "//section[@class='esh-basket-item esh-basket-item--mark col-xs-2']";
-    String priceLabel = "//article//section[3]";
-    String quantityLabel = "//article//section[4]//descendant::input";
+    String priceLabel = "//article[@class='esh-basket-items row']//section[3]";
+    String quantityLabel = "//div//article[@class='esh-basket-items row']//section[4]/descendant::input[2]";
     String continueButton = "//a[@class='btn esh-basket-checkout text-white']";
     String updateButton = "//button[@name='updatebutton']";
     String checkoutButton = "//input[@value='[ Checkout ]']";
@@ -40,19 +40,11 @@ public class BasketPage extends RunBase {
     }
 
     public List<String> getPrice(){
-        List<String> data = Utils.getList(String.valueOf(By.xpath(priceLabel)));
-        List<String> price = null;
-        for(String item: data){
-            if(data.contains("$")){
-                price.add(item);
-            }
-        }
-        return price;
+        return Utils.getList(String.valueOf(By.xpath(priceLabel)).replaceAll("$", ""));
     }
 
     public List<String> getQuantity(){
-        List<String> quantitList = Utils.getList(String.valueOf(By.xpath(quantityLabel)));
-        return quantitList;
+        return Utils.getListAttribute(quantityLabel);
     }
 
     public String getTotal(){
