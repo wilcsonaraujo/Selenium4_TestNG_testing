@@ -4,7 +4,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 
 public class RunBase {
     protected static WebDriver driver;
@@ -17,7 +19,7 @@ public class RunBase {
         driver.get("https://eshop-onweb-webinar-demo2.azurewebsites.net/?pageid=-1");
     }
 
-    @AfterClass
+    @AfterTest
     public void close() {
         if (driver != null) {
             driver.close();

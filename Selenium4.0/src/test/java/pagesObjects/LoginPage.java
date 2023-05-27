@@ -6,8 +6,8 @@ import runner.RunBase;
 
 public class LoginPage extends RunBase {
 
-    String emailFilder = "//input[@id='Input_Email']";
-    String passwordFilder = "//input[@id='Input_Password']";
+    String emailField = "//input[@id='Input_Email']";
+    String passwordField = "//input[@id='Input_Password']";
     String loginButton = "//button[normalize-space()='Log in']";
     String forgotPasswordButton = "//a[normalize-space()='Forgot your password?']";
     String registerButton = "//a[normalize-space()='Register as a new user']";
@@ -16,11 +16,11 @@ public class LoginPage extends RunBase {
     String submitButton = "//button[normalize-space()='Submit']";
 
     public void inputEmail(String email) {
-        driver.findElement(By.xpath(emailFilder)).sendKeys(email);
+        driver.findElement(By.xpath(emailField)).sendKeys(email);
     }
 
     public void inputPassword(String password) {
-        driver.findElement(By.xpath(passwordFilder)).sendKeys(password);
+        driver.findElement(By.xpath(passwordField)).sendKeys(password);
     }
 
     public void clickToLogin() {
